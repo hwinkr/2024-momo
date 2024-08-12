@@ -39,7 +39,7 @@ export default function Header() {
     <header css={s_header}>
       <div css={s_logoContainer}>
         <Logo width={36} height={36} />
-        <h1 css={s_title}>momo-최현웅222</h1>
+        <h1 css={s_title}>momo-최현웅222222</h1>
       </div>
       {uuid ? (
         <Button variant="primary" size="m" onClick={handleAuthButtonClick}>
