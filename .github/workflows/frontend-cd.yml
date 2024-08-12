@@ -61,6 +61,10 @@ jobs:
         if: steps.cache.outputs.cache-hit != 'true'
         run: npm ci
 
+      - name: .env 파일을 생성해요 :)
+        run: |
+          echo "${{ secrets.MOMO_FE_ENV }}" >> .env
+
       - name: 프론트엔드 리소스를 빌드해요 :)
         run: npm run build
 
