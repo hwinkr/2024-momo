@@ -1,4 +1,4 @@
-name: Frontend CI
+name: Frontend CD
 
 on:
   push:
@@ -16,15 +16,18 @@ jobs:
       backend: ${{ steps.filter.outputs.backend }}
       frontend: ${{ steps.filter.outputs.frontend }}
     steps:
+      - uses: actions/checkout@v4 # Push 이벤트이기 때문에 checkout 해야 함
+        with:
+          ref: develop
       - uses: dorny/paths-filter@v3
         id: filter
         with:
+          base: "develop" # 해당 브랜치의 last commit과 변경점 비교
           filters: |
             backend:
               - 'backend/**'
             frontend:
               - 'frontend/**'
-          list-files: "csv"
 
   fe-build:
     needs: detect-changes # jobs들은 병렬로 실행됨, needs 키워드를 사용해서 특정 job이 완료(성공)면 실행하도록 설정
